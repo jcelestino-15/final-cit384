@@ -52,7 +52,9 @@ Jazmin Celestino
     * sudo a2dissite 000-default.conf                                                 
 
 11. What happens when a user enters a URL into the browser?
-    *                                                  <!-- answer -->
+    * Once a user enters a URL into the browser, the browser searches the IP address of the domain. Then,
+    the browser initates a TCP (Transfer Control Protocol) connection with the server. The browser then sends the HTTP request to the server. The server takes the request and sends back a response. Finally, the browser 
+    shows the HTML content. 
 
 ---
 You may earn extra credit in this part of the assignment by: 

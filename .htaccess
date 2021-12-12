@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Please Enter Password"
+AuthUserFile /var/www/html/final.cit384/public_html/submission/.htpasswd
+Require valid-user
