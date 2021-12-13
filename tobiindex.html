@@ -1,59 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Yogi About Me Page</title>
+    <title>Tobi About Me Page</title>
 </head>
 <style>
-    body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  box-sizing: border-box;
-}
 
-html {
-  box-sizing: border-box;
-}
+  body {
+    font-family: "Helvetica", Sans-Serif;
+  }
 
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  margin: 8px;
-}
-
-.column-2 {
-  float: left;
-  width: 45%;
-  padding: 40px;
-  padding-left:70px;
-  padding-right: 70px;
-  height: 475px;
-  margin:30px;
-  margin-right:30px;
-  margin-bottom: 70px;
-  background-color: #CFE7EC;
-  line-height:2;
-}
+  .header {
+    margin:30px;
+    font-size:20px;
+    padding: 40px;
+    text-align: center;
+    background: #f9f7f7;
+  }
+  
+/* About Page */
 
 /* Includes padding and border in total box size*/
 * {
     box-sizing: border-box;
   }
-.large-profile {
-  background: url("/yogi.jpg");
-  background-size: cover;
-  background-position: center;
+  
+  /* Create 2 equal columns that floats next to each other */
+
+  .column-2 {
+    float: left;
+    width: 45%;
+    padding: 40px;
+    padding-left:70px;
+    padding-right: 70px;
+    height: 600px;
+    margin:30px;
+    margin-right:30px;
+    margin-bottom: 70px;
+    background-color: #e6e6fa;
+    line-height:2;
+  }
+  
+.profile-picture {
+    background: url("/tobi/tobi.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 40px;
 }
-
-
 </style>
 <body>
-<div class="column-2">
+
+  <div class="header">
+    <h1>Tobi Celestino</h1>
+  </div>
+
+  <div class="column-2">
     <h1>About Me</h1>
-    <p class="title">Family Dog</p>
-    <p>He is Yogi</p>
-          
-</div>
-<div class="column-2 large-profile">
-</div>
+    
+    <p class="title"><strong>Family Dog</strong></p>
+    
+    <p> Tobi was born on January 2, 2018. Tobi was adopted on December 26, 2020. He is a chihuahua mix breed.
+      His name was inspired by my brother's favorite character, Obito Uchiha, from an anime called Naruto; 
+      Tobi is the name of Obito's alter-ego.
+    </p> 
+    <p> His favorite snack is Jerky Treats Tender Beef Strips. His favorite hobby is sleeping.</p>
+    <p> He is a timid dog. He likes to be petted and cuddled. He likes to take long walks around the neighborhood.</p>     
+  </div>
+  
+  <div class="column-2 profile-picture">
+  </div>
+
 </body>
 </html>
-    

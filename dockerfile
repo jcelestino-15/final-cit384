@@ -1,3 +1,4 @@
+
 FROM ubuntu:latest
 ENV DEBIAN_FRONTEND=nonintercative
 
@@ -35,9 +36,12 @@ RUN sudo usermod -aG cit384 yogi
 
 WORKDIR /home/tobi/public_html
 COPY tobiindex.html .
+ADD tobi.jpg .
 
 WORKDIR /home/yogi/public_html
+ADD yogi.jpg .
 COPY yogiindex.html .
+COPY user.cgi .
 
 WORKDIR /var/www/html
 RUN sudo mkdir -p /mywebsite.cit384/public_html
@@ -75,7 +79,6 @@ RUN sudo a2ensite final.cit384.conf
 
 #disabling defeault site
 RUN sudo a2dissite 000-default.conf
-
 
 # Add in other directives as needed
 LABEL Maintainer: "jazmin.celestino.694@my.csun.edu"
