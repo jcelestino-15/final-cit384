@@ -18,8 +18,14 @@ RUN a2enmod autoindex
 RUN a2enmod rewrite
 RUN a2enmod alias
 RUN a2enmod auth_basic
+RUN a2enmod ssl
+RUN a2enmod headers
 
 COPY apache2.conf /etc/apache2/apache2.conf
+
+#creating self signed certificates and placing in appropriate location
+RUN sudo mkdir -p /etc/apache2/ssl/
+RUN openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=US/ST=CA/L=Los Angeles/O=CSUN/OU=CIT/CN=server_IP_address" -keyout /etc/apache2/ssl/ssl.key -out /etc/apache2/ssl/ssl.crt 
 
 # adding group
 RUN sudo groupadd cit384
