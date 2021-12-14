@@ -22,6 +22,11 @@ RUN a2enmod ssl
 RUN a2enmod headers
 RUN a2enmod cgi
 RUN a2enmod cgid
+RUN a2enmod proxy 
+RUN a2enmod proxy_http
+RUN a2enmod proxy_balancer
+RUN a2enmod lbmethod_byrequests
+
 
 COPY apache2.conf /etc/apache2/apache2.conf
 
@@ -62,6 +67,7 @@ WORKDIR /var/www/html
 RUN sudo mkdir -p /mywebsite.cit384/public_html
 RUN sudo mkdir -p /special.cit384/public_html
 RUN sudo mkdir -p /final.cit384/public_html
+RUN sudo mkdir -p /chihuahuas.cosplay/public_html
 
 #modifying permission to web dir
 RUN sudo chmod -R 775 /var/www/html
@@ -74,23 +80,29 @@ WORKDIR /var/www/html/special.cit384/public_html
 COPY specialindex.html .
 RUN mv specialindex.html index.html
 
+WORKDIR /var/www/html/chihuahuas.cosplay/public_html
+COPY chicosplayindex.html .
+RUN mv chicosplayindex.html index.html
 
 # creating password protected directory 
 RUN sudo mkdir -p /var/www/html/final.cit384/public_html/submission
 WORKDIR /var/www/html/final.cit384/public_html/submission
 COPY submission.md .
-RUN sudo htpasswd -c /home/submission.txt tobi
+RUN sudo htpasswd -c .htpasswd tobi
 COPY .htaccess .
 
+COPY submission.txt /home/
 
 COPY mywebsite.cit384.conf  /etc/apache2/sites-available
 COPY special.cit384.conf /etc/apache2/sites-available
 COPY final.cit384.conf /etc/apache2/sites-available
+COPY chihuahuas.cosplay.conf /etc/apache2/sites-available
 
 #enable the 3 websites
 RUN sudo a2ensite mywebsite.cit384.conf
 RUN sudo a2ensite special.cit384.conf
 RUN sudo a2ensite final.cit384.conf
+RUN sudo a2ensite chihuahuas.cosplay.conf
 
 #disabling defeault site
 RUN sudo a2dissite 000-default.conf
@@ -98,5 +110,5 @@ RUN sudo a2dissite 000-default.conf
 # Add in other directives as needed
 LABEL Maintainer: "jazmin.celestino.694@my.csun.edu"
 
-EXPOSE 80
+EXPOSE 80 443
 CMD ["/usr/sbin/apache2ctl", "-D","FOREGROUND"]
