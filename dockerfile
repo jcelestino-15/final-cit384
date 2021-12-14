@@ -20,6 +20,8 @@ RUN a2enmod alias
 RUN a2enmod auth_basic
 RUN a2enmod ssl
 RUN a2enmod headers
+RUN a2enmod cgi
+RUN a2enmod cgid
 
 COPY apache2.conf /etc/apache2/apache2.conf
 
@@ -40,6 +42,9 @@ RUN adduser yogi
 RUN passwd -d yogi
 RUN sudo usermod -aG cit384 yogi
 
+WORKDIR /etc/apache2/conf-available/
+COPY serve-cgi-bin.conf .
+
 WORKDIR /home/tobi/public_html
 COPY tobiindex.html .
 ADD tobi.jpg .
@@ -47,7 +52,11 @@ ADD tobi.jpg .
 WORKDIR /home/yogi/public_html
 ADD yogi.jpg .
 COPY yogiindex.html .
+
+WORKDIR /home/yogi/public_html/cgi-bin
 COPY user.cgi .
+RUN sudo chmod +x /home/yogi/public_html/cgi-bin/user.cgi
+
 
 WORKDIR /var/www/html
 RUN sudo mkdir -p /mywebsite.cit384/public_html
