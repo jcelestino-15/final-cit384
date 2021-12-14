@@ -47,22 +47,26 @@ RUN adduser yogi
 RUN passwd -d yogi
 RUN sudo usermod -aG cit384 yogi
 
+#for the cgi script
 WORKDIR /etc/apache2/conf-available/
 COPY serve-cgi-bin.conf .
 
+#adding index.html for tobi
 WORKDIR /home/tobi/public_html
 COPY tobiindex.html .
 ADD tobi.jpg .
 
+#adding index.html for yogi
 WORKDIR /home/yogi/public_html
 ADD yogi.jpg .
 COPY yogiindex.html .
 
+# cgi script in yogi directory
 WORKDIR /home/yogi/public_html/cgi-bin
 COPY user.cgi .
 RUN sudo chmod +x /home/yogi/public_html/cgi-bin/user.cgi
 
-
+#creating different websites
 WORKDIR /var/www/html
 RUN sudo mkdir -p /mywebsite.cit384/public_html
 RUN sudo mkdir -p /special.cit384/public_html
@@ -72,6 +76,7 @@ RUN sudo mkdir -p /chihuahuas.cosplay/public_html
 #modifying permission to web dir
 RUN sudo chmod -R 775 /var/www/html
 
+#adding html files to the websites
 WORKDIR /var/www/html/mywebsite.cit384/public_html
 COPY mywebsiteindex.html .
 RUN mv mywebsiteindex.html index.html
@@ -91,8 +96,10 @@ COPY submission.md .
 RUN sudo htpasswd -c .htpasswd tobi
 COPY .htaccess .
 
+#adding in the username and password in submission.txt 
 COPY submission.txt /home/
 
+#vhost files
 COPY mywebsite.cit384.conf  /etc/apache2/sites-available
 COPY special.cit384.conf /etc/apache2/sites-available
 COPY final.cit384.conf /etc/apache2/sites-available
