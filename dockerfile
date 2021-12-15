@@ -67,11 +67,10 @@ COPY user.cgi .
 RUN sudo chmod +x /home/yogi/public_html/cgi-bin/user.cgi
 
 #creating different websites
-WORKDIR /var/www/html
-RUN sudo mkdir -p /mywebsite.cit384/public_html
-RUN sudo mkdir -p /special.cit384/public_html
-RUN sudo mkdir -p /final.cit384/public_html
-RUN sudo mkdir -p /chihuahuas.cosplay/public_html
+RUN sudo mkdir -p /var/www/html/mywebsite.cit384/public_html
+RUN sudo mkdir -p /var/www/html/special.cit384/public_html
+RUN sudo mkdir -p /var/www/html/final.cit384/public_html
+RUN sudo mkdir -p /var/www/html/chihuahuas.cosplay/public_html
 
 #modifying permission to web dir
 RUN sudo chmod -R 775 /var/www/html
@@ -87,7 +86,6 @@ RUN mv specialindex.html index.html
 
 WORKDIR /var/www/html/chihuahuas.cosplay/public_html
 COPY chicosplayindex.html .
-RUN mv chicosplayindex.html index.html
 
 # creating password protected directory 
 RUN sudo mkdir -p /var/www/html/final.cit384/public_html/submission
