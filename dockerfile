@@ -84,9 +84,6 @@ WORKDIR /var/www/html/special.cit384/public_html
 COPY specialindex.html .
 RUN mv specialindex.html index.html
 
-WORKDIR /var/www/html/newwebsite.cit384/public_html
-COPY chicosplayindex.html .
-
 # creating password protected directory 
 RUN sudo mkdir -p /var/www/html/final.cit384/public_html/submission
 WORKDIR /var/www/html/final.cit384/public_html/submission
